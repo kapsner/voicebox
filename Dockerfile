@@ -54,6 +54,8 @@ WORKDIR /app
 
 # Install only runtime system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    sox \
+    libsox-fmt-all \
     ffmpeg \
     curl \
     && rm -rf /var/lib/apt/lists/*

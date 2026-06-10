@@ -18,17 +18,25 @@ services:
       - voicebox-data:/app/data
 
       # HuggingFace model cache (so models aren't re-downloaded on rebuild)
-      - huggingface-cache:/home/voicebox/.cache/huggingface
+      - /home/lorenz/.local/share/voicebox/huggingface-cache:/home/voicebox/.cache/huggingface
 
     environment:
       - LOG_LEVEL=info
       - NUMBA_CACHE_DIR=/tmp/numba_cache
+      - PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
     networks:
       - voicebox-net
 
+    shm_size: 2gb
+    
     deploy:
       resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
         limits:
           cpus: '4'
           memory: 8G
@@ -39,4 +47,4 @@ networks:
 
 volumes:
   voicebox-data:
-  huggingface-cache:
+#   huggingface-cache:

@@ -39,6 +39,8 @@ RUN pip install --no-cache-dir --prefix=/install --no-deps chatterbox-tts
 RUN pip install --no-cache-dir --prefix=/install --no-deps hume-tada
 RUN pip install --no-cache-dir --prefix=/install \
     git+https://github.com/QwenLM/Qwen3-TTS.git
+RUN pip install --no-cache-dir --prefix=/install psutil
+RUN pip install --no-cache-dir --prefix=/install "flash_attn @ https://github.com/Dao-AILab/flash-attention/releases/download/v2.8.3.post1/flash_attn-2.8.3+cu12torch2.8cxx11abiTRUE-cp311-cp311-linux_x86_64.whl" 
 
 
 # === Stage 3: Runtime ===
